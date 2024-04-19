@@ -33,18 +33,21 @@ def get_file_from_repo(version:str, file_name:str):
 
 
 def get_data_from_json(file_name:str):    
-        file_path = f"./json/{file_name}.json"
-        try:
-            file_data = json.load(open(file_path)) 
-            for item in range(0,10):
-                print(file_data[item])
-        except FileNotFoundError as exception:
-            print(f"{file_name} not found. {exception}")
-            
+    file_path = f"./json/{file_name}.json"
+    try:
+        file_data = json.load(open(file_path)) 
+        for item in range(0,10):
+            print(file_data[item])
+    except FileNotFoundError as exception:
+        print(f"{file_name} not found. {exception}")
+
+def merge_spell_data():
+    merged = {}
+    #with open()
 
 def main():
     #get_file_from_repo(LIVE_REPO, "talenttree.csv")
-    get_data_from_json("spell")
+    get_data_from_json("talent")
 
 
 
