@@ -46,31 +46,34 @@ def get_file_from_repo(version:str, file_name:str):
 
 def get_data_from_json(file_name:str):    
     file_path = get_file_name(file_name)
+    
     try:
         file_data = json.load(open(file_path)) 
         for item in range(0,10):
             print(file_data[item])
+    
     except FileNotFoundError as exception:
         print(f"Error: {file_name} not found. {exception}")
 
-def merge_spell_data(base_name:str,merge_name:str):
+def merge_spell_data(base_name:str, base_column:str, merge_name:str, merge_column:str):
     base_file = get_file_name(base_name)
     merge_file = get_file_name(merge_name)
     merged = {}
     print(f"Reading {base_name}...")
     
-    
+    base_data =  pandas.read_json(base_file, orient='records')
     print(f"Done. Reading {merge_file}...")
     
+    merge_data = pandas.read_json(merge_file, orient='records')
       
     print("Done. Merging...")
     
+    merged = pandas.merge(base_data,merge_data, how='left',left_on=base_column, right_on=merge_column, copy=False)
     
     print("Done")
-    
     spell_json_file = f"./merged_json/spell_data.json"
     
-    json.dump(merged, spell_json_file)
+    merged.to_json(spell_json_file, orient='records')
 
 def get_file_name(name:str)->str:
     return f"./json/{name}.json" 
@@ -78,9 +81,6 @@ def get_file_name(name:str)->str:
 def main():
     #get_file_from_repo(LIVE_REPO, "spellname.csv")
     #get_data_from_json("spell")
-    merge_spell_data("spell","spellcasttimes")
-
-
-
+    merge_spell_data("spell",'ID',"spellcasttimes", 'ID')
 
 main()
