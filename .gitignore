@@ -1,3 +1,4 @@
 src/json/
 src/merged_json/
-
+__pycache__/
+.venv/

@@ -1,6 +1,8 @@
 
-SPELL_FILES = ['spell','spellcasttimes','spelleffect','spellmisc','spellname','spellcooldowns','spellduration','spellpower','specializationspells']
+BASE_SPELL = ('spell','ID')
 
-SPELL_FILES_OPTIONAL = ['spellcategory','spellcategories','spellprocsperminute','spellprocsperminutemod','spelllabel','']
+SPELL_FILES = [('spellcasttimes','ID'),('spelleffect','SpellID'),('spellmisc','SpellID'),('spellname','ID'),('spellcooldowns','SpellID'),('spellduration','ID'),('spellpower','SpellID'),('specializationspells','SpellID')]
 
-TALENT_FILES = ['talent']
+SPELL_FILES_OPTIONAL = [('spellcategory',''),('spellcategories',''),('spellprocsperminute',''),('spellprocsperminutemod',''),('spelllabel','')]
+
+TALENT_FILES = ('talent','SPELLID')
